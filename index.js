@@ -1,17 +1,19 @@
-var checkIn = require("./check-in");
+var express = require('express');
+var scheduleCheckIn = require('./schedule-check-in');
+var app = express();
 
-checkIn.checkIn({
-  confirmationNumber: 'ZW6X84',
-  firstName: 'Clifton',
-  lastName: 'Crosland'
-}).then(success, error);
+app.get('/', function (req, res) {
+  var opt = {
+    confirmationNumber: 'ZW6X84',
+    firstName: 'Clifton',
+    lastName: 'Crosland',
+    departureDateTime: new Date('Thu Dec 26 2013 10:10:00 GMT-0800 (Pacific Standard Time)'),
+    emailAddress: 'cliffcrosland@gmail.com',
+    cellPhoneNumber: '650-799-3336'
+  };
+  scheduleCheckIn.scheduleCheckIn(opt);
+  res.json(opt);
+});
 
-function success(boardingPassUrl) {
-  console.log("Your boarding pass url is:");
-  console.log(boardingPassUrl);
-}
+app.listen(3000);
 
-function error(err) {
-  console.error("An error occurred.");
-  console.error(err);
-}

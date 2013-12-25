@@ -51,5 +51,5 @@ module.exports.checkIn = function (opt) {
     then(getBoardingPassUrl);
 
   return promise;
-}
+};
 
