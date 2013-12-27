@@ -1,9 +1,7 @@
 var express = require('express');
 var scheduleCheckIn = require('./schedule-check-in');
+var airportsAutocomplete = require('./airports-autocomplete');
 var app = express();
-var ac = require('autocomplete');
-var fs = require('fs');
-var EOL = require('os').EOL;
 
 app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
@@ -33,13 +31,7 @@ app.get('/', function (req, res) {
   res.render('form');
 });
 
-var autocomplete = ac.connectAutocomplete();
-initializeAutocomplete(autocomplete);
-
-app.get('/airports', function (req, res) {
-  var results = autocomplete.search(req.query['term'].toLowerCase());
-  res.send(results);
-});
+app.get('/airports', airportsAutocomplete.airports);
 
 function errorHandler(err, req, res, next) {
   console.error("An error occurred:");
@@ -50,15 +42,6 @@ function errorHandler(err, req, res, next) {
     errorMsg = err.stack.split("\n").join("<br />");
   }
   res.render('error', { error: errorMsg });
-}
-
-function initializeAutocomplete(autocomplete) {
-  fs.readFile('./airports.dat', function (err, data) {
-    var airports = data.toString().split(EOL);
-    autocomplete.initialize(function (onReady) {
-      onReady(airports);
-    });
-  });
 }
 
 app.listen(3000);

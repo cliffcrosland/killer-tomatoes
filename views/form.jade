@@ -13,19 +13,16 @@ block content
     div Email Address
     input(type="text", placeholder="Email Address", name="emailAddress")
     div Departure Date and Time
-    input(type="text", id="departureDateTime", name="departureDateTime", placeholder="Click to select departure date and time.")
+    input(type="text", id="departureDateTime", name="departureDateTime", placeholder="Click to select.")
     div Departure Airport
-    select(name="departureAirport", id="departureAirport")
-      include airport-options
+    input(type="text", id="departureAirport", name="departureAirport", placeholder="Departure Airport")
     div
     input(type="submit", value="Submit")
 
   link(rel="stylesheet", href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css")
   link(rel="stylesheet", href="/css/vendor/jquery-ui-timepicker-addon.css")
-  link(rel="stylesheet", href="/css/vendor/select2.css")
   script(src="//code.jquery.com/jquery-1.9.1.js")
   script(src="//code.jquery.com/ui/1.10.3/jquery-ui.js")
   script(src="/js/vendor/jquery-ui-timepicker-addon.js")
-  script(src="/js/vendor/select2.min.js")
 
   script(src="/js/form.js")
