@@ -18,11 +18,14 @@ app.post('/check_ins', function (req, res) {
     confirmationNumber: req.body.confirmationNumber,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    departureDateTime: departureDateTime.getDepartureDateTime(req.body.departureDateTimeString, req.body.departureAirport),
+    departureDateTime: null,
     emailAddress: req.body.emailAddress
   };
-  scheduleCheckIn.scheduleCheckIn(opt);
-  res.json(opt);
+  departureDateTime.getDepartureDateTime(req.body.departureDateTimeString, req.body.departureAirport, function (departureDateTime) {
+    opt.departureDateTime = departureDateTime;
+    scheduleCheckIn.scheduleCheckIn(opt);
+    res.render('check-in', opt);
+  });
 });
 
 app.get('/check_ins', function (req, res) {

@@ -52,4 +52,3 @@ exports.checkIn = function (opt) {
 
   return promise;
 };
-

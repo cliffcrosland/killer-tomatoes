@@ -21,14 +21,16 @@ module.exports.scheduleCheckIn = function (params) {
     var msg = "<p>You're checked in! Your boarding pass url is:<p>" +
       "<p><a href='" + boardingPassUrl + "'>" + boardingPassUrl + "</a></p>";
     emailService.sendEmail(params.emailAddress, msg);
-
-    console.log("Sent email:");
-    console.log(params.emailAddress);
-    console.log(msg);
   };
 
   var error = function (err) {
-    var msg = "<p>An error occurred while trying to check you in: </p>" + err;
+    var msg = "<p>An error occurred while trying to check you in: </p>" + 
+      "<p>" + err + "</p>" +
+      "<p>To check in on your own, visit <a href='http://www.southwest.com'>southwest.com</a></p>" +
+      "<p>Confirmation #: " + params.confirmationNumber + "</p>" +
+      "<p>First Name: " + params.firstName + "</p>" +
+      "<p>Last Name: " + params.lastName + "</p>" + 
+      "<p>Good luck!</p>";
     emailService.sendEmail(params.emailAddress, msg);
     console.error("An error occurred:");
     console.error(err);
@@ -43,18 +45,22 @@ module.exports.scheduleCheckIn = function (params) {
   };
 
   var checkInDateTime = new Date(params.departureDateTime.getTime() - 24 * 60 * 60 * 1000);
+  console.log(checkInDateTime.toString());
+  console.log(params.departureDateTime.toString());
 
   var job = new cronJob({
     cronTime: checkInDateTime,
     start: true,
+    timeZone: params.departureDateTime.getTimezone(),
     onTick: function () {
       checkInJob();
       this.stop();
-      pendingJobs = _.without(pendingJobs, this);
+      pendingJobs = _.without(pendingJobs, params);
     }
   });
 
-  pendingJobs.push(job);
+  job.start();
+  pendingJobs.push(params);
 };
 
 

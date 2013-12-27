@@ -4,20 +4,20 @@ block content
   h1 Cliffanie Airlines
   h2 Check in to your flight automagically
   form(name="check_in_form", action="/check_ins", method="post")
-    div Confirmation #
-    input(type="text", placeholder="Confirmation #", name="confirmationNumber")
-    div First Name
-    input(type="text", placeholder="First Name", name="firstName")
-    div Last Name
-    input(type="text", placeholder="Last Name", name="lastName")
-    div Email Address
-    input(type="text", placeholder="Email Address", name="emailAddress")
-    div Departure Date and Time
-    input(type="text", id="departureDateTimeString", name="departureDateTimeString", placeholder="Click to select.")
-    div Departure Airport
-    input(type="text", id="departureAirport", name="departureAirport", placeholder="Departure Airport")
+    div Confirmation #:
+    input(type="text", name="confirmationNumber")
+    div First Name:
+    input(type="text", name="firstName")
+    div Last Name:
+    input(type="text", name="lastName")
+    div Email Address:
+    input(type="text", name="emailAddress")
+    div Departure Date and Time:
+    input(type="text", id="departureDateTimeString", name="departureDateTimeString", placeholder="Click to select...")
+    div Departure Airport:
+    input(type="text", id="departureAirport", name="departureAirport", placeholder="Type to search...")
     div
-    input(type="submit", value="Submit")
+    input(type="submit", value="Submit", style="margin-top:10px;")
 
   link(rel="stylesheet", href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css")
   link(rel="stylesheet", href="/css/vendor/jquery-ui-timepicker-addon.css")

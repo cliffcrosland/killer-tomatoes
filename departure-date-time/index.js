@@ -1,5 +1,6 @@
 var request = require('request');
 var async = require('async');
+var time = require('time');
 
 exports.getDepartureDateTime = function (departureDateTimeString, departureAirport, callback) {
   var getTimezone = async.compose(getTimezoneFromLatLng, getLatLng);
@@ -7,8 +8,9 @@ exports.getDepartureDateTime = function (departureDateTimeString, departureAirpo
     departureDateTimeString: departureDateTimeString,
     departureAirport: departureAirport
   }, function (err, result) {
-    callback(result);
-    console.log(result);
+    var departureDateTime = new time.Date(departureDateTimeString);
+    departureDateTime.setTimezone(result.timeZoneId);
+    callback(departureDateTime);
   });
 };
 
@@ -21,7 +23,6 @@ function getLatLng(opt, callback) {
     }
     var results = JSON.parse(body).results;
     opt.latLng = results[0].geometry.location;
-    console.log(opt);
     callback(null, opt);
   });
 };

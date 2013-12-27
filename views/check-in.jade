@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+  h1 Check in has been scheduled!
+  div
+    span Will check in exactly 24 hours before this departure date: 
+    span
+      strong= departureDateTime.toString()
+  div
+    span Confirmation Number: 
+    span
+      strong= confirmationNumber
+  div
+    span First Name: 
+    span
+      strong= firstName
+  div
+    span Last Name: 
+    span
+      strong= lastName
+  div
+    span Notifications will be sent to this email address: 
+    span
+      strong= emailAddress
