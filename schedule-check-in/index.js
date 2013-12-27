@@ -5,7 +5,7 @@ var _ = require('underscore');
 
 var pendingJobs = [];
 
-module.exports.getScheduledCheckIns = function () {
+exports.getScheduledCheckIns = function () {
   return pendingJobs.slice();
 };
 
@@ -50,6 +50,7 @@ module.exports.scheduleCheckIn = function (params) {
     onTick: function () {
       checkInJob();
       this.stop();
+      pendingJobs = _.without(pendingJobs, this);
     }
   });
 

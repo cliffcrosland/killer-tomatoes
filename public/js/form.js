@@ -1,5 +1,5 @@
 $(function () {
-  $("#departureDateTime").datetimepicker({
+  $("#departureDateTimeString").datetimepicker({
     timeFormat: 'h:mm tt',
     controlType: 'select'
   });

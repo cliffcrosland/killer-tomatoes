@@ -8,7 +8,11 @@
     "express": "~3.4.7",
     "jade": "~1.0.0",
     "selenium-webdriver": "~2.39.0",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "nodemailer": "~0.5.15",
+    "request": "~2.30.0",
+    "async": "~0.2.9",
+    "time": "~0.10.0"
   },
   "devDependencies": {},
   "scripts": {

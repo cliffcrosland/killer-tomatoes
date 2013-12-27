@@ -1,6 +1,8 @@
 var express = require('express');
 var scheduleCheckIn = require('./schedule-check-in');
 var airportsAutocomplete = require('./airports-autocomplete');
+var emailService = require("./email-service");
+var departureDateTime = require("./departure-date-time");
 var app = express();
 
 app.set('view engine', 'jade');
@@ -16,7 +18,7 @@ app.post('/check_ins', function (req, res) {
     confirmationNumber: req.body.confirmationNumber,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    departureDateTime: new Date(req.body.departureDateTime),
+    departureDateTime: departureDateTime.getDepartureDateTime(req.body.departureDateTimeString, req.body.departureAirport),
     emailAddress: req.body.emailAddress
   };
   scheduleCheckIn.scheduleCheckIn(opt);
@@ -42,6 +44,9 @@ function errorHandler(err, req, res, next) {
     errorMsg = err.stack.split("\n").join("<br />");
   }
   res.render('error', { error: errorMsg });
+}
+
+function getDepartureDateTime(departureDateTime, departureAirport) {
 }
 
 app.listen(3000);

@@ -1,6 +1,6 @@
 var webdriver = require("selenium-webdriver");
 
-module.exports.checkIn = function (opt) {
+exports.checkIn = function (opt) {
   var driver = new webdriver.Builder().
     withCapabilities(webdriver.Capabilities.chrome()).
     build();
