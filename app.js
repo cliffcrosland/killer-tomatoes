@@ -51,8 +51,10 @@ function errorHandler(err, req, res, next) {
 
 app.configure('production', function () {
   app.listen(80);
+  console.log('listening on port 80...');
 });
 
 app.configure('development', function () {
   app.listen(3000);
+  console.log('listening on port 3000...');
 })
