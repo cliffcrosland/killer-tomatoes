@@ -1,0 +1,20 @@
+{
+  "name": "southwest-checkin",
+  "version": "0.0.1",
+  "description": "Automatically check in to Southwest 24 hours before your flight",
+  "main": "app.js",
+  "dependencies": {
+    "autocomplete": "~0.0.1",
+    "cron": "~1.0.1",
+    "express": "~3.4.7",
+    "jade": "~1.0.0",
+    "selenium-webdriver": "~2.39.0",
+    "underscore": "~1.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}

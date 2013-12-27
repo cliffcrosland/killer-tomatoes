@@ -5,7 +5,9 @@ var _ = require('underscore');
 
 var pendingJobs = [];
 
-module.exports.pendingCheckInJobs = pendingJobs;
+module.exports.getScheduledCheckIns = function () {
+  return pendingJobs.slice();
+};
 
 module.exports.scheduleCheckIn = function (params) {
   var missingParams = getMissingParams(params);
@@ -56,6 +58,6 @@ module.exports.scheduleCheckIn = function (params) {
 
 
 function getMissingParams(params) {
-  var required = ['confirmationNumber', 'firstName', 'lastName', 'departureDateTime', 'emailAddress', 'cellPhoneNumber'];
+  var required = ['confirmationNumber', 'firstName', 'lastName', 'departureDateTime', 'emailAddress'];
   return _.difference(required, _.keys(params));
 }
