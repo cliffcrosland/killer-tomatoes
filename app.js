@@ -49,7 +49,10 @@ function errorHandler(err, req, res, next) {
   res.render('error', { error: errorMsg });
 }
 
-function getDepartureDateTime(departureDateTime, departureAirport) {
-}
+app.configure('production', function () {
+  app.listen(80);
+});
 
-app.listen(3000);
+app.configure('development', function () {
+  app.listen(3000);
+})
