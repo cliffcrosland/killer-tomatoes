@@ -1,6 +1,7 @@
 var checkIn = require("../check-in");
 var emailService = require("../email-service");
 var cronJob = require('cron').CronJob;
+var time = require('time');
 var _ = require('underscore');
 
 var pendingJobs = [];
@@ -44,7 +45,9 @@ module.exports.scheduleCheckIn = function (params) {
     }).then(success, error);
   };
 
-  var checkInDateTime = new Date(params.departureDateTime.getTime() - 24 * 60 * 60 * 1000);
+  var checkInDateTime = new time.Date(params.departureDateTime.getTime() - 24 * 60 * 60 * 1000);
+  checkInDateTime.setTimezone(params.departureDateTime.getTimezone());
+
   console.log(checkInDateTime.toString());
   console.log(params.departureDateTime.toString());
 

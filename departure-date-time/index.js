@@ -8,6 +8,10 @@ exports.getDepartureDateTime = function (departureDateTimeString, departureAirpo
     departureDateTimeString: departureDateTimeString,
     departureAirport: departureAirport
   }, function (err, result) {
+    if (err) {
+      console.error(err);
+      return;
+    }
     var departureDateTime = new time.Date(departureDateTimeString);
     departureDateTime.setTimezone(result.timeZoneId);
     callback(departureDateTime);
