@@ -45,11 +45,10 @@ module.exports.scheduleCheckIn = function (params) {
     }).then(success, error);
   };
 
-  var checkInDateTime = new time.Date(params.departureDateTime.getTime() - 24 * 60 * 60 * 1000);
-  checkInDateTime.setTimezone(params.departureDateTime.getTimezone());
+  var checkInDateTime = new time.Date(params.departureDateTime.getTime() - 24 * 60 * 60 * 1000, params.departureDateTime.getTimezone());
 
+  console.log('check in date time:');
   console.log(checkInDateTime.toString());
-  console.log(params.departureDateTime.toString());
 
   var job = new cronJob({
     cronTime: checkInDateTime,

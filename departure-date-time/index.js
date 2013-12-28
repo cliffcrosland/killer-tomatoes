@@ -12,8 +12,11 @@ exports.getDepartureDateTime = function (departureDateTimeString, departureAirpo
       console.error(err);
       return;
     }
-    var departureDateTime = new time.Date(departureDateTimeString);
-    departureDateTime.setTimezone(result.timeZoneId);
+    console.log('departure date time string:');
+    console.log(departureDateTimeString);
+    var departureDateTime = new time.Date(departureDateTimeString, result.timeZoneId);
+    console.log('constructed departure date time:');
+    console.log(departureDateTime.toString());
     callback(departureDateTime);
   });
 };
